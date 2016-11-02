@@ -15,10 +15,12 @@
     <complexType name="Book">
         <sequence>
             <element name="id" type="bk:ID"/>
-            <element name="name" type="string"/>
+            <element name="title" type="string"/>
             <element name="genre" type="bk:Genre"/>
             <element name="authors" type="bk:Authors"/>
+            <element name="numberOfPages" type="positiveInteger"/>
             <element name="yearOfPublishing" type="gYear"/>
+            <element name="language" type="bk:Language"/>
         </sequence>
     </complexType>
 
@@ -44,4 +46,12 @@
             <element name="author" type="string" minOccurs="1" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
+
+    <simpleType name="Language">
+        <restriction base="string">
+            <enumeration value="Russian"/>
+            <enumeration value="English"/>
+            <enumeration value="Kazakh"/>
+        </restriction>
+    </simpleType>
 </schema>

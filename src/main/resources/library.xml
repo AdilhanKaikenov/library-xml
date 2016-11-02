@@ -4,13 +4,15 @@
     <books>
         <book>
             <id>AB123</id>
-            <name>JAVA Methods Programming</name>
+            <title>JAVA Methods Programming</title>
             <genre>Programming</genre>
             <authors>
                 <author>И.Н.Блинов</author>
                 <author>В.С.Романчик</author>
             </authors>
+            <numberOfPages>897</numberOfPages>
             <yearOfPublishing>2013</yearOfPublishing>
+            <language>Russian</language>
         </book>
     </books>
 </library>
