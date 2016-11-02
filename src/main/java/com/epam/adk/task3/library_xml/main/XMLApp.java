@@ -5,7 +5,7 @@ package com.epam.adk.task3.library_xml.main;
  *
  * @author Kaikenov Adilhan.
  */
-public class XmlApp {
+public class XMLApp {
 
     /**
      * Application starting point.
