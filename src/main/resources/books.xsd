@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://epam-xml-library.com/library_xml"
+        xmlns:bk="http://epam-xml-library.com/library_xml"
+        xmlns="http://www.w3.org/2001/XMLSchema">
+    
+    <element name="books" type="bk:Books"/>
+
+    <complexType name="Books">
+        <sequence>
+            <element name="book" type="bk:Book" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Book">
+        <sequence>
+            <element name="id" type="bk:ID"/>
+            <element name="name" type="string"/>
+            <element name="genre" type="bk:Genre"/>
+            <element name="authors" type="bk:Authors"/>
+            <element name="yearOfPublishing" type="gYear"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="ID">
+        <restriction base="ID">
+            <pattern value="[A-Z]{2}[0-9]{3}"/>
+        </restriction>
+    </simpleType>
+    
+    <simpleType name="Genre">
+        <restriction base="string">
+            <enumeration value="Fantasy"/>
+            <enumeration value="Poetry"/>
+            <enumeration value="Detective"/>
+            <enumeration value="Novel"/>
+            <enumeration value="Cookery"/>
+            <enumeration value="Programming"/>
+        </restriction>
+    </simpleType>
+    
+    <complexType name="Authors">
+        <sequence>
+            <element name="author" type="string" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+</schema>

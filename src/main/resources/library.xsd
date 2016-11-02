@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+        targetNamespace="http://epam-xml-library.com/library_xml"
+        xmlns:lib="http://epam-xml-library.com/library_xml"
+        xmlns="http://www.w3.org/2001/XMLSchema">
+
+    <include schemaLocation="books.xsd"/>
+
+    <element name="library" type="lib:Library"/>
+
+    <complexType name="Library">
+        <sequence>
+            <element name="books" type="lib:Books" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+</schema>

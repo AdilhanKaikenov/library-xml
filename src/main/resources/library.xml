@@ -1,1 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<library xmlns="http://epam-xml-library.com/library_xml">
+    <books>
+        <book>
+            <id>AB123</id>
+            <name>JAVA Methods Programming</name>
+            <genre>Programming</genre>
+            <authors>
+                <author>И.Н.Блинов</author>
+                <author>В.С.Романчик</author>
+            </authors>
+            <yearOfPublishing>2013</yearOfPublishing>
+        </book>
+    </books>
+</library>
