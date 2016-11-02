@@ -14,7 +14,7 @@
 
     <complexType name="Book">
         <sequence>
-            <element name="id" type="bk:ID"/>
+            <element name="isbn" type="bk:ID"/>
             <element name="title" type="string"/>
             <element name="genre" type="bk:Genre"/>
             <element name="authors" type="bk:Authors"/>
@@ -25,8 +25,8 @@
     </complexType>
 
     <simpleType name="ID">
-        <restriction base="ID">
-            <pattern value="[A-Z]{2}[0-9]{3}"/>
+        <restriction base="string">
+            <pattern value="([0-9]{3})-([0-9])-([0-9]{2})-([0-9]{6})-([0-9])"/>
         </restriction>
     </simpleType>
     

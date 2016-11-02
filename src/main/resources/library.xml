@@ -3,7 +3,7 @@
 <library xmlns="http://epam-xml-library.com/library_xml">
     <books>
         <book>
-            <id>AB123</id>
+            <isbn>978-5-17-097961-5</isbn>
             <title>JAVA Methods Programming</title>
             <genre>Programming</genre>
             <authors>
