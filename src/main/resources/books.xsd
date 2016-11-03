@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-           targetNamespace="http://epam-xml-library.com/library_xml"
+        targetNamespace="http://epam-xml-library.com/library_xml"
         xmlns:bk="http://epam-xml-library.com/library_xml"
         xmlns="http://www.w3.org/2001/XMLSchema">
-    
+
     <element name="books" type="bk:Books"/>
 
     <complexType name="Books">
@@ -29,7 +29,7 @@
             <pattern value="([0-9]{3})-([0-9])-([0-9]{2})-([0-9]{6})-([0-9])"/>
         </restriction>
     </simpleType>
-    
+
     <simpleType name="Genre">
         <restriction base="string">
             <enumeration value="Fantasy"/>
@@ -40,7 +40,7 @@
             <enumeration value="Programming"/>
         </restriction>
     </simpleType>
-    
+
     <complexType name="Authors">
         <sequence>
             <element name="author" type="string" minOccurs="1" maxOccurs="unbounded"/>
@@ -54,4 +54,5 @@
             <enumeration value="Kazakh"/>
         </restriction>
     </simpleType>
+
 </schema>
