@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
-import java.util.Collection;
 
 /**
  * The StaxEntityParser class. Created on 03.11.2016.
@@ -21,8 +20,4 @@ public class StaxEntityParser implements EntityParser {
         return null;
     }
 
-    @Override
-    public <T extends Collection<C>, C extends BaseEntity> T parse(InputStream inputStream, Class<T> collectionClass, Class<C> clazz) {
-        return null;
-    }
 }

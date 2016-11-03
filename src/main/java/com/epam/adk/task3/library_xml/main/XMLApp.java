@@ -1,8 +1,12 @@
 package com.epam.adk.task3.library_xml.main;
 
+import com.epam.adk.task3.library_xml.entity.Library;
+import com.epam.adk.task3.library_xml.parser.SaxEntityParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
@@ -21,6 +25,12 @@ public class XMLApp {
      */
     public static void main(String[] args) throws FileNotFoundException {
 
+        File file = new File("src\\main\\resources\\library.xml");
+
+        SaxEntityParser parser = new SaxEntityParser();
+        Library library = parser.parse(new FileInputStream(file), Library.class);
+
+        log.info("SaxEntityParser: Library = {}", library);
 
     }
 }
