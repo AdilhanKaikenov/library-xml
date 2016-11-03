@@ -1,4 +1,4 @@
-package com.epam.adk.task3.library_xml.entity;
+package com.epam.adk.task3.library_xml.entity.enums;
 
 /**
  * The enum class Language. Created on 03.11.2016.

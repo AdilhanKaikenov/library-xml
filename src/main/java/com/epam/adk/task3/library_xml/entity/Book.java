@@ -1,5 +1,7 @@
 package com.epam.adk.task3.library_xml.entity;
 
+import com.epam.adk.task3.library_xml.entity.enums.Genre;
+
 import java.time.Year;
 
 /**
