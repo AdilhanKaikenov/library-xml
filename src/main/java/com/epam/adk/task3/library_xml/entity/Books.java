@@ -34,8 +34,10 @@ public class Books implements BaseEntity {
 
     @Override
     public String toString() {
-        return "Books{" +
-                "books=" + books +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        for (Book book : books) {
+            sb.append("books: ").append(book);
+        }
+        return  sb.toString();
     }
 }

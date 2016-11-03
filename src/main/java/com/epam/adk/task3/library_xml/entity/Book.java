@@ -95,13 +95,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", genre=" + genre +
-                ", authors=" + authors +
-                ", numberOfPages=" + numberOfPages +
-                ", year=" + year +
-                '}';
+        return "\n * book: " +
+                "\n\t -> isbn = " + isbn +
+                "\n\t -> title = " + title +
+                "\n\t -> genre= " + genre + authors +
+                "\n\t -> numberOfPages = " + numberOfPages +
+                "\n\t -> year = " + year + ".";
     }
 }

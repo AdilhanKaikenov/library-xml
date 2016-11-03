@@ -34,9 +34,12 @@ public class Authors {
 
     @Override
     public String toString() {
-        return "Authors{" +
-                "authors=" + authors +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n\t -> authors: ");
+        for (Author author : authors){
+            sb.append(author);
+        }
+        return sb.toString();
     }
 
     /**
@@ -63,9 +66,7 @@ public class Authors {
 
         @Override
         public String toString() {
-            return "Author{" +
-                    "name='" + name + '\'' +
-                    '}';
+            return "\n\t\t -> author = '" + name + '\'';
         }
     }
 

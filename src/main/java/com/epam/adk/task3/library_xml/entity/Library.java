@@ -27,8 +27,6 @@ public class Library implements BaseEntity {
 
     @Override
     public String toString() {
-        return "Library{" +
-                "books=" + books +
-                '}';
+        return "Library: \n".toUpperCase() + books;
     }
 }
