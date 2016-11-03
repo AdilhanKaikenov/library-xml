@@ -2,6 +2,11 @@ package com.epam.adk.task3.library_xml.entity;
 
 import java.util.List;
 
+/**
+ * The class Authors. Created on 03.11.2016.
+ *
+ * @author Kaikenov Adilhan.
+ */
 public class Authors {
 
     private List<Author> authors;

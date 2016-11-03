@@ -1,5 +1,10 @@
 package com.epam.adk.task3.library_xml.entity;
 
+/**
+ * The enum class Genre. Created on 03.11.2016.
+ *
+ * @author Kaikenov Adilhan.
+ */
 public enum Genre {
 
     FANTASY("Fantasy"),

@@ -2,6 +2,11 @@ package com.epam.adk.task3.library_xml.entity;
 
 import java.time.Year;
 
+/**
+ * The class Book. Created on 03.11.2016.
+ *
+ * @author Kaikenov Adilhan.
+ */
 public class Book {
 
     private String isbn;

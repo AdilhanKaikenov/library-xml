@@ -1,5 +1,10 @@
 package com.epam.adk.task3.library_xml.entity;
 
+/**
+ * The class Library. Created on 03.11.2016.
+ *
+ * @author Kaikenov Adilhan.
+ */
 public class Library {
 
     private Books books;
