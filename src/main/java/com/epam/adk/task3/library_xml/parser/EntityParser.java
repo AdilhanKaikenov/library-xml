@@ -3,7 +3,7 @@ package com.epam.adk.task3.library_xml.parser;
 import com.epam.adk.task3.library_xml.entity.BaseEntity;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * The interface EntityParser. Created on 03.11.2016.
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface EntityParser {
 
-    <T extends BaseEntity> T parse(InputStream inputStream, Class<T> clazz);
+    <C extends BaseEntity> C parse(InputStream inputStream, Class<C> clazz);
 
-    <T extends BaseEntity> List<T> parse(InputStream inputStream, List list, Class<T> clazz);
+    <T extends Collection<C>, C extends BaseEntity> T parse(InputStream inputStream, Class<T> collectionClass, Class<C> clazz);
 }

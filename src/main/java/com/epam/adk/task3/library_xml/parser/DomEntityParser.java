@@ -3,7 +3,7 @@ package com.epam.adk.task3.library_xml.parser;
 import com.epam.adk.task3.library_xml.entity.BaseEntity;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * The DomEntityParser class. Created on 03.11.2016.
@@ -13,12 +13,12 @@ import java.util.List;
 public class DomEntityParser implements EntityParser {
 
     @Override
-    public <T extends BaseEntity> T parse(InputStream inputStream, Class<T> clazz) {
+    public <C extends BaseEntity> C parse(InputStream inputStream, Class<C> clazz) {
         return null;
     }
 
     @Override
-    public <T extends BaseEntity> List<T> parse(InputStream inputStream, List list, Class<T> clazz) {
+    public <T extends Collection<C>, C extends BaseEntity> T parse(InputStream inputStream, Class<T> collectionClass, Class<C> clazz) {
         return null;
     }
 }

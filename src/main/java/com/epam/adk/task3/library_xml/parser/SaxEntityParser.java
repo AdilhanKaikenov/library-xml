@@ -6,7 +6,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * The SaxEntityParser class. Created on 03.11.2016.
@@ -16,12 +16,12 @@ import java.util.List;
 public class SaxEntityParser implements EntityParser {
 
     @Override
-    public <T extends BaseEntity> T parse(InputStream inputStream, Class<T> clazz) {
+    public <C extends BaseEntity> C parse(InputStream inputStream, Class<C> clazz) {
         return null;
     }
 
     @Override
-    public <T extends BaseEntity> List<T> parse(InputStream inputStream, List list, Class<T> clazz) {
+    public <T extends Collection<C>, C extends BaseEntity> T parse(InputStream inputStream, Class<T> collectionClass, Class<C> clazz) {
         return null;
     }
 
