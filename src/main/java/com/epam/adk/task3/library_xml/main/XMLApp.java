@@ -1,5 +1,8 @@
 package com.epam.adk.task3.library_xml.main;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 
 /**
@@ -8,6 +11,8 @@ import java.io.FileNotFoundException;
  * @author Kaikenov Adilhan.
  */
 public class XMLApp {
+
+    private static final Logger log = LoggerFactory.getLogger(XMLApp.class);
 
     /**
      * Application starting point.
