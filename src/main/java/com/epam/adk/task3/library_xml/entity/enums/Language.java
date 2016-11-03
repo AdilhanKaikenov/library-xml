@@ -16,4 +16,17 @@ public enum Language {
     Language(String value) {
         this.value = value;
     }
+
+    public String getValue() {
+        return value;
+    }
+
+    public static Language from(String value){
+        for (Language language : Language.values()){
+            if (value != null && language.getValue().equals(value)){
+                return language;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
 }
