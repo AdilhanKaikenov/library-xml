@@ -1,5 +1,6 @@
 package com.epam.adk.task3.library_xml.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ public class Books implements BaseEntity {
     private List<Book> books;
 
     public Books() {
+        books = new ArrayList<>();
     }
 
     public Books(List<Book> books) {
@@ -24,6 +26,10 @@ public class Books implements BaseEntity {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public boolean add(Book book){
+        return books.add(book);
     }
 
     @Override

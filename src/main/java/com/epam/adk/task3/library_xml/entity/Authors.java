@@ -1,5 +1,6 @@
 package com.epam.adk.task3.library_xml.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ public class Authors {
     private List<Author> authors;
 
     public Authors() {
+        authors = new ArrayList<>();
     }
 
     public Authors(List<Author> authors) {
@@ -26,6 +28,10 @@ public class Authors {
         this.authors = authors;
     }
 
+    public boolean add(Author author){
+        return authors.add(author);
+    }
+
     @Override
     public String toString() {
         return "Authors{" +
@@ -36,7 +42,7 @@ public class Authors {
     /**
      * Inner class Author.
      */
-    private class Author {
+    public static class Author {
 
         private String name;
 

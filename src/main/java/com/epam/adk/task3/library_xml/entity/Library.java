@@ -10,6 +10,7 @@ public class Library implements BaseEntity {
     private Books books;
 
     public Library() {
+        books = new Books();
     }
 
     public Library(Books books) {

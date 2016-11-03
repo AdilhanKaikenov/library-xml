@@ -1,6 +1,7 @@
 package com.epam.adk.task3.library_xml.entity;
 
 import com.epam.adk.task3.library_xml.entity.enums.Genre;
+import com.epam.adk.task3.library_xml.entity.enums.Language;
 
 import java.time.Year;
 
@@ -17,17 +18,19 @@ public class Book {
     private Authors authors;
     private Integer numberOfPages;
     private Year year;
+    private Language language;
 
     public Book() {
     }
 
-    public Book(String isbn, String title, Genre genre, Authors authors, Integer numberOfPages, Year year) {
+    public Book(String isbn, String title, Genre genre, Authors authors, Integer numberOfPages, Year year, Language language) {
         this.isbn = isbn;
         this.title = title;
         this.genre = genre;
         this.authors = authors;
         this.numberOfPages = numberOfPages;
         this.year = year;
+        this.language = language;
     }
 
     public String getIsbn() {
@@ -80,6 +83,14 @@ public class Book {
 
     public void setYear(int year) {
         this.year = Year.of(year);
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     @Override
