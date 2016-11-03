@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilhan.
  */
-public class Books {
+public class Books implements BaseEntity {
 
     private List<Book> books;
 

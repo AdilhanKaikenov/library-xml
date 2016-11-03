@@ -5,7 +5,7 @@ package com.epam.adk.task3.library_xml.entity;
  *
  * @author Kaikenov Adilhan.
  */
-public class Library {
+public class Library implements BaseEntity {
 
     private Books books;
 
