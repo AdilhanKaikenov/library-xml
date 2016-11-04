@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilhan.
  */
-public class Library implements BaseEntity {
+public class Library {
 
     private List<Book> books;
 

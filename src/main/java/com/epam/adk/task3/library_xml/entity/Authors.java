@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilhan.
  */
-public class Authors implements BaseEntity {
+public class Authors {
 
     private List<Author> authors;
 
