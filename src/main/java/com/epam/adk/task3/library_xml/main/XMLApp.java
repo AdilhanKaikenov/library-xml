@@ -25,10 +25,10 @@ public class XMLApp {
      */
     public static void main(String[] args) throws FileNotFoundException {
 
-        File file = new File("src\\main\\resources\\library.xml");
+        File file = new File("src\\main\\resources\\library.xml"); // TODO: resource
 
         SaxEntityParser parser = new SaxEntityParser();
-        Library library = parser.parse(new FileInputStream(file), Library.class);
+        Library library = parser.parse(new FileInputStream(file));
 
         log.info("SaxEntityParser: Library = {}", library);
 

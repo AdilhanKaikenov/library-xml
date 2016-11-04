@@ -1,6 +1,6 @@
 package com.epam.adk.task3.library_xml.parser;
 
-import com.epam.adk.task3.library_xml.entity.BaseEntity;
+import com.epam.adk.task3.library_xml.entity.Library;
 
 import java.io.InputStream;
 
@@ -11,7 +11,6 @@ import java.io.InputStream;
  */
 public interface EntityParser {
 
-    <C extends BaseEntity> C parse(InputStream inputStream, Class<C> clazz);
+    Library parse(InputStream inputStream);
 
-//    <T extends Collection<C>, C extends BaseEntity> T parse(InputStream inputStream, Class<T> collectionClass, Class<C> clazz);
 }

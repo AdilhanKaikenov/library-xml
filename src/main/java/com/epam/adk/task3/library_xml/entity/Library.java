@@ -1,5 +1,8 @@
 package com.epam.adk.task3.library_xml.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The class Library. Created on 03.11.2016.
  *
@@ -7,26 +10,34 @@ package com.epam.adk.task3.library_xml.entity;
  */
 public class Library implements BaseEntity {
 
-    private Books books;
+    private List<Book> books;
 
     public Library() {
-        books = new Books();
+        books = new ArrayList<>();
     }
 
-    public Library(Books books) {
+    public Library(List<Book> books) {
         this.books = books;
     }
 
-    public Books getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Books books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public boolean add(Book book){
+        return books.add(book);
     }
 
     @Override
     public String toString() {
-        return "Library: \n".toUpperCase() + books;
+        StringBuilder sb = new StringBuilder();
+        for (Book book : books) {
+            sb.append("books: ").append(book);
+        }
+        return  sb.toString();
     }
 }

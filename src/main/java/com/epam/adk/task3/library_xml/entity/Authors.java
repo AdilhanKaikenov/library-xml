@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilhan.
  */
-public class Authors {
+public class Authors implements BaseEntity {
 
     private List<Author> authors;
 
@@ -41,33 +41,4 @@ public class Authors {
         }
         return sb.toString();
     }
-
-    /**
-     * Inner class Author.
-     */
-    public static class Author {
-
-        private String name;
-
-        public Author() {
-        }
-
-        public Author(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return "\n\t\t -> author = '" + name + '\'';
-        }
-    }
-
 }

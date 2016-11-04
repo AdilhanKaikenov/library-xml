@@ -1,6 +1,6 @@
 package com.epam.adk.task3.library_xml.parser;
 
-import com.epam.adk.task3.library_xml.entity.BaseEntity;
+import com.epam.adk.task3.library_xml.entity.Library;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +16,7 @@ public class StaxEntityParser implements EntityParser {
     private static final Logger log = LoggerFactory.getLogger(StaxEntityParser.class);
 
     @Override
-    public <C extends BaseEntity> C parse(InputStream inputStream, Class<C> clazz) {
+    public Library parse(InputStream inputStream) {
         return null;
     }
-
 }

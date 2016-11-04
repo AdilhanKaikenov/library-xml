@@ -10,7 +10,7 @@ import java.time.Year;
  *
  * @author Kaikenov Adilhan.
  */
-public class Book {
+public class Book implements BaseEntity {
 
     private String isbn;
     private String title;
