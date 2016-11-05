@@ -13,13 +13,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 
@@ -31,7 +24,6 @@ import java.text.MessageFormat;
 public class SaxEntityParser implements EntityParser {
 
     private static final Logger log = LoggerFactory.getLogger(SaxEntityParser.class);
-    private static final String RESOURCES_LIBRARY_XSD_PATH = "src\\main\\resources\\library.xsd";
 
     private SaxParserHandler handler = new SaxParserHandler();
 
@@ -44,10 +36,7 @@ public class SaxEntityParser implements EntityParser {
         try (InputStream is = SaxParserHandler.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
             parser = factory.newSAXParser();
 
-            validate(resourcesXMLFilePath);
-
             parser.parse(is, handler);
-
 
             log.debug("SaxEntityParser the parse method executed!");
         } catch (Exception e) {
@@ -56,24 +45,6 @@ public class SaxEntityParser implements EntityParser {
                     "The error in the method 'parse()' of class SaxEntityParser: {0}", e));
         }
         return handler.getLibrary();
-    }
-
-    private void validate(String resourcesXMLFilePath) throws SAXException, IOException {
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(("http://www.w3.org/2001/XMLSchema"));
-        File schemaLocation = new File(RESOURCES_LIBRARY_XSD_PATH);
-        Schema schema = schemaFactory.newSchema(schemaLocation);
-        Validator validator = schema.newValidator();
-        try (InputStream is = SaxParserHandler.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
-            Source source = new StreamSource(is);
-            try {
-                validator.validate(source);
-                log.debug("{} file is valid!", resourcesXMLFilePath);
-            } catch (SAXException e) {
-                log.error("{} file is not valid!", resourcesXMLFilePath);
-                throw new RuntimeException(MessageFormat.format(
-                        "{0} file is not valid!", e));
-            }
-        }
     }
 
     /**

@@ -5,7 +5,6 @@ import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
 import com.epam.adk.task3.library_xml.entity.enums.Genre;
 import com.epam.adk.task3.library_xml.entity.enums.Language;
-import com.epam.adk.task3.library_xml.parser.StaxEntityParser;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ public class ElementsContentInitialiser {
     /**
      * The method for initializing entities on the current element (tag).
      *
-     * @param elementEnum
+     * @param elementEnum element enumeration.
      * @param content tag text.
      * @param book Book instance.
      * @param authors Authors instance.

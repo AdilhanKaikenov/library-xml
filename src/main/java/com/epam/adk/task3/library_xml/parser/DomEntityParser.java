@@ -38,6 +38,7 @@ public class DomEntityParser implements EntityParser {
         log.debug("Entering DomEntityParser class, parse( Argument: resourcesXMLFilePath = {}) ", resourcesXMLFilePath);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try (InputStream is = DomEntityParser.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
+
             DocumentBuilder documentBuilder = factory.newDocumentBuilder();
             Document document = documentBuilder.parse(is);
 
