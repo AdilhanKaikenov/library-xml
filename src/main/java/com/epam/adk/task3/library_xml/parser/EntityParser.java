@@ -9,6 +9,6 @@ import com.epam.adk.task3.library_xml.entity.Library;
  */
 public interface EntityParser {
 
-    Library parse(String xmlFilePath);
+    Library parse(String resourcesXMLFilePath);
 
 }

@@ -1,12 +1,10 @@
 package com.epam.adk.task3.library_xml.parser;
 
-import com.epam.adk.task3.library_xml.entity.Author;
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
 import com.epam.adk.task3.library_xml.entity.Library;
-import com.epam.adk.task3.library_xml.entity.enums.Genre;
-import com.epam.adk.task3.library_xml.entity.enums.Language;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
+import com.epam.adk.task3.library_xml.util.ElementsContentInitialiser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
@@ -17,7 +15,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.InputStream;
 import java.text.MessageFormat;
-import java.time.Year;
 
 /**
  * The SaxEntityParser class. Created on 03.11.2016.
@@ -31,12 +28,16 @@ public class SaxEntityParser implements EntityParser {
     private SaxParserHandler handler = new SaxParserHandler();
 
     @Override
-    public Library parse(String xmlFilePath) {
+    public Library parse(String resourcesXMLFilePath) {
+        log.debug("Entering SaxEntityParser class, parse( Argument: resourcesXMLFilePath = {}) ", resourcesXMLFilePath);
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser;
-        try (InputStream is = SaxParserHandler.class.getClassLoader().getResourceAsStream(xmlFilePath)) {
+
+        try (InputStream is = SaxParserHandler.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
             parser = factory.newSAXParser();
+
             parser.parse(is, handler);
+
             log.debug("SaxEntityParser the parse method executed!");
         } catch (Exception e) {
             log.error("The error in the method 'parse()' of class SaxEntityParser: {}", e);
@@ -54,11 +55,7 @@ public class SaxEntityParser implements EntityParser {
         private Library library;
         private Book book;
         private Authors authors;
-        private Author author;
         private ElementEnum elementEnum;
-
-        public SaxParserHandler() {
-        }
 
         public Library getLibrary() {
             return library;
@@ -67,7 +64,7 @@ public class SaxEntityParser implements EntityParser {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             ElementEnum startElement = ElementEnum.from(qName);
-            log.trace("startElement() method element = {}", qName);
+            log.trace("startElement() method current element = {}, startElement enumeration = {}", qName, startElement);
 
             if (startElement != null) {
                 switch (startElement) {
@@ -90,7 +87,8 @@ public class SaxEntityParser implements EntityParser {
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
             ElementEnum endElement = ElementEnum.from(qName);
-            log.trace("endElement() method element = {}", qName);
+            log.trace("endElement() method current element = {}, endElement enumeration = {}", qName, endElement);
+
             if (endElement != null) {
                 switch (endElement) {
                     case AUTHORS:
@@ -108,33 +106,7 @@ public class SaxEntityParser implements EntityParser {
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
             String content = new String(ch, start, length);
-            if (elementEnum != null) {
-                switch (elementEnum) {
-                    case ISBN:
-                        book.setIsbn(content);
-                        break;
-                    case TITLE:
-                        book.setTitle(content);
-                        break;
-                    case GENRE:
-                        book.setGenre(Genre.from(content));
-                        break;
-                    case AUTHOR:
-                        author = new Author();
-                        author.setName(content);
-                        authors.add(author);
-                        break;
-                    case NUMBER_OF_PUBLISHING:
-                        book.setNumberOfPages(Integer.parseInt(content));
-                        break;
-                    case YEAR_OF_PUBLISHING:
-                        book.setYear(Year.parse(content));
-                        break;
-                    case LANGUAGE:
-                        book.setLanguage(Language.from(content));
-                        break;
-                }
-            }
+            ElementsContentInitialiser.initialize(elementEnum, content, book, authors);
         }
     }
 }

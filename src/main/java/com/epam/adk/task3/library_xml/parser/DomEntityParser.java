@@ -34,15 +34,18 @@ public class DomEntityParser implements EntityParser {
     }
 
     @Override
-    public Library parse(String xmlFilePath) {
+    public Library parse(String resourcesXMLFilePath) {
+        log.debug("Entering DomEntityParser class, parse( Argument: resourcesXMLFilePath = {}) ", resourcesXMLFilePath);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try (InputStream is = DomEntityParser.class.getClassLoader().getResourceAsStream(xmlFilePath)) {
+        try (InputStream is = DomEntityParser.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
             DocumentBuilder documentBuilder = factory.newDocumentBuilder();
             Document document = documentBuilder.parse(is);
 
             Element root = document.getDocumentElement();
+            log.debug("Root element tag name = {}", root.getTagName());
 
             bookBuild(root);
+
         } catch (Exception e) {
             log.error("The error in the method 'parse()' of class DomEntityParser: {}", e);
             throw new RuntimeException(MessageFormat.format("" +

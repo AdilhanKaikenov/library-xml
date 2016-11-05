@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 public class XMLApp {
 
     private static final Logger log = LoggerFactory.getLogger(XMLApp.class);
-    private static final String XML_FILE_PATH = "library.xml";
+    private static final String RESOURCES_XML_FILE_PATH = "library.xml";
 
     /**
      * Application starting point.
@@ -25,15 +25,15 @@ public class XMLApp {
     public static void main(String[] args) {
 
         SaxEntityParser saxParser = new SaxEntityParser();
-        Library library1 = saxParser.parse(XML_FILE_PATH);
+        Library library1 = saxParser.parse(RESOURCES_XML_FILE_PATH);
         log.info("SaxEntityParser: Library = {}", library1);
 
         StaxEntityParser staxParser = new StaxEntityParser();
-        Library library2 = staxParser.parse(XML_FILE_PATH);
+        Library library2 = staxParser.parse(RESOURCES_XML_FILE_PATH);
         log.info("StaxEntityParser: Library = {}", library2);
 
         DomEntityParser domParser = new DomEntityParser();
-        Library library3 = domParser.parse(XML_FILE_PATH);
+        Library library3 = domParser.parse(RESOURCES_XML_FILE_PATH);
         log.info("DomEntityParser: Library = {}", library3);
 
     }
