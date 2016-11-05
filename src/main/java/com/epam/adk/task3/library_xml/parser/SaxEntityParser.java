@@ -31,9 +31,7 @@ public class SaxEntityParser implements EntityParser {
 
     @Override
     public Library parse(InputStream inputStream) {
-
         SAXParserFactory factory = SAXParserFactory.newInstance();
-
         SAXParser parser;
         try (InputStream is = inputStream) {
             parser = factory.newSAXParser();
@@ -50,7 +48,6 @@ public class SaxEntityParser implements EntityParser {
      */
     private class SaxParserHandler extends DefaultHandler {
 
-        private String currentElement;
         private Library library;
         private Book book;
         private Authors authors;
@@ -66,12 +63,11 @@ public class SaxEntityParser implements EntityParser {
 
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-            currentElement = qName;
+            ElementEnum startElement = ElementEnum.from(qName);
             log.trace("startElement() method element = {}", qName);
-            ElementEnum element = ElementEnum.from(currentElement);
 
-            if (element != null) {
-                switch (element) {
+            if (startElement != null) {
+                switch (startElement) {
                     case LIBRARY:
                         library = new Library();
                         break;
@@ -82,7 +78,7 @@ public class SaxEntityParser implements EntityParser {
                         authors = new Authors();
                         break;
                     default:
-                        elementEnum = element;
+                        elementEnum = startElement;
                 }
             }
             log.trace("startElement() method elementEnum = {}", elementEnum);
@@ -90,18 +86,19 @@ public class SaxEntityParser implements EntityParser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            currentElement = qName;
-            log.trace("endElement() method element = {}", currentElement);
-
-            switch (qName) {
-                case "authors":
-                    book.setAuthors(authors);
-                    break;
-                case "book":
-                    library.add(book);
-                    break;
-                default:
-                    elementEnum = null;
+            ElementEnum endElement = ElementEnum.from(qName);
+            log.trace("endElement() method element = {}", qName);
+            if (endElement != null) {
+                switch (endElement) {
+                    case AUTHORS:
+                        book.setAuthors(authors);
+                        break;
+                    case BOOK:
+                        library.add(book);
+                        break;
+                    default:
+                        elementEnum = null;
+                }
             }
         }
 

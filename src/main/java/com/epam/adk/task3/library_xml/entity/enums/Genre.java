@@ -1,7 +1,5 @@
 package com.epam.adk.task3.library_xml.entity.enums;
 
-import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
-
 /**
  * The enum class Genre. Created on 03.11.2016.
  *

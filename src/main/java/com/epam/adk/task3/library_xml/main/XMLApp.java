@@ -5,9 +5,8 @@ import com.epam.adk.task3.library_xml.parser.SaxEntityParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * The class with main method. Created on 1.11.2016.
@@ -25,10 +24,10 @@ public class XMLApp {
      */
     public static void main(String[] args) throws FileNotFoundException {
 
-        File file = new File("src\\main\\resources\\library.xml"); // TODO: resource
+        InputStream inputStream = XMLApp.class.getClassLoader().getResourceAsStream("library.xml");
 
         SaxEntityParser parser = new SaxEntityParser();
-        Library library = parser.parse(new FileInputStream(file));
+        Library library = parser.parse(inputStream);
 
         log.info("SaxEntityParser: Library = {}", library);
 
