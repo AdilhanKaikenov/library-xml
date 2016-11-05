@@ -16,6 +16,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.InputStream;
+import java.text.MessageFormat;
 import java.time.Year;
 
 /**
@@ -30,15 +31,17 @@ public class SaxEntityParser implements EntityParser {
     private SaxParserHandler handler = new SaxParserHandler();
 
     @Override
-    public Library parse(InputStream inputStream) {
+    public Library parse(String xmlFilePath) {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser;
-        try (InputStream is = inputStream) {
+        try (InputStream is = SaxParserHandler.class.getClassLoader().getResourceAsStream(xmlFilePath)) {
             parser = factory.newSAXParser();
             parser.parse(is, handler);
+            log.debug("SaxEntityParser the parse method executed!");
         } catch (Exception e) {
-            log.error("The error in the method 'parse()' of class SAX: " + e.getMessage());
-            throw new RuntimeException(e);
+            log.error("The error in the method 'parse()' of class SaxEntityParser: {}", e);
+            throw new RuntimeException(MessageFormat.format("" +
+                    "The error in the method 'parse()' of class SaxEntityParser: {0}", e));
         }
         return handler.getLibrary();
     }
