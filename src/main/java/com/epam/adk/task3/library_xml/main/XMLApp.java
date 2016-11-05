@@ -1,6 +1,7 @@
 package com.epam.adk.task3.library_xml.main;
 
 import com.epam.adk.task3.library_xml.entity.Library;
+import com.epam.adk.task3.library_xml.parser.DomEntityParser;
 import com.epam.adk.task3.library_xml.parser.SaxEntityParser;
 import com.epam.adk.task3.library_xml.parser.StaxEntityParser;
 import org.slf4j.Logger;
@@ -23,13 +24,17 @@ public class XMLApp {
      */
     public static void main(String[] args) {
 
-        SaxEntityParser parserSAX = new SaxEntityParser();
-        Library libraryOne = parserSAX.parse(XML_FILE_PATH);
-        log.info("SaxEntityParser: Library = {}", libraryOne);
+        SaxEntityParser saxParser = new SaxEntityParser();
+        Library library1 = saxParser.parse(XML_FILE_PATH);
+        log.info("SaxEntityParser: Library = {}", library1);
 
-        StaxEntityParser parserStAX = new StaxEntityParser();
-        Library libraryTwo = parserStAX.parse(XML_FILE_PATH);
-        log.info("StaxEntityParser: Library = {}", libraryTwo);
+        StaxEntityParser staxParser = new StaxEntityParser();
+        Library library2 = staxParser.parse(XML_FILE_PATH);
+        log.info("StaxEntityParser: Library = {}", library2);
+
+        DomEntityParser domParser = new DomEntityParser();
+        Library library3 = domParser.parse(XML_FILE_PATH);
+        log.info("DomEntityParser: Library = {}", library3);
 
     }
 }
