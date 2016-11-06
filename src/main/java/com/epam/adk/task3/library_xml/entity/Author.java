@@ -1,26 +1,31 @@
 package com.epam.adk.task3.library_xml.entity;
 
+/**
+ * The class Author. Created on 03.11.2016.
+ *
+ * @author Kaikenov Adilhan.
+ */
 public class Author {
 
-    private String name;
+    private String author;
 
     public Author() {
     }
 
-    public Author(String name) {
-        this.name = name;
+    public Author(String author) {
+        this.author = author;
     }
 
-    public String getName() {
-        return name;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @Override
     public String toString() {
-        return "\n\t\t - '" + name + '\'';
+        return "\n\t\t - '" + author + '\'';
     }
 }
