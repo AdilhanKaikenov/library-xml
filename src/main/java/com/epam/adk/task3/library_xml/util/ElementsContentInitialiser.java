@@ -24,11 +24,11 @@ public class ElementsContentInitialiser {
      * The method for initializing entities on the current element (tag).
      *
      * @param elementEnum element enumeration.
-     * @param content tag text.
      * @param book Book instance.
      * @param authors Authors instance.
+     * @param content tag text.
      */
-    public static void initialize(ElementEnum elementEnum, String content, Book book, Authors authors){
+    public static void initialize(ElementEnum elementEnum, Book book, Authors authors, String content){
         log.trace("Entering ElementsContentInitialiser class, initialize( Argument: elementEnum = {}) method", elementEnum);
         if (elementEnum != null && book != null && authors != null) {
             switch (elementEnum) {

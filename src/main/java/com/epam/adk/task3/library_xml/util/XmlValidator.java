@@ -11,11 +11,11 @@ import java.io.File;
 import java.text.MessageFormat;
 
 /**
- * The XmlParserValidator class. Created on 05.11.2016.
+ * The XmlValidator class. Created on 05.11.2016.
  *
  * @author Kaikenov Adilhan.
  */
-public class XmlParserValidator {
+public class XmlValidator {
 
     private static final Logger log = LoggerFactory.getLogger(SaxEntityParser.class);
 

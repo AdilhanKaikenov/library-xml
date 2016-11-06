@@ -4,7 +4,7 @@ import com.epam.adk.task3.library_xml.entity.Library;
 import com.epam.adk.task3.library_xml.parser.DomEntityParser;
 import com.epam.adk.task3.library_xml.parser.SaxEntityParser;
 import com.epam.adk.task3.library_xml.parser.StaxEntityParser;
-import com.epam.adk.task3.library_xml.util.XmlParserValidator;
+import com.epam.adk.task3.library_xml.util.XmlValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +27,7 @@ public class XMLApp {
      */
     public static void main(String[] args) {
 
-        XmlParserValidator validator = new XmlParserValidator();
+        XmlValidator validator = new XmlValidator();
         validator.validateXMLByXSD(RESOURCES_LIBRARY_XML_PATH, RESOURCES_LIBRARY_XSD_PATH);
 
         SaxEntityParser saxParser = new SaxEntityParser();

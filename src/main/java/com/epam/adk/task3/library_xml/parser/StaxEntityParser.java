@@ -98,7 +98,7 @@ public class StaxEntityParser implements EntityParser {
                             library.add(book);
                             break;
                     }
-                    ElementsContentInitialiser.initialize(elementEnum, content.toString(), book, authors);
+                    ElementsContentInitialiser.initialize(elementEnum, book, authors, content.toString());
                     break;
 
                 case XMLStreamConstants.CHARACTERS:

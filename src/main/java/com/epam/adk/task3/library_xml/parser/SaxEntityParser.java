@@ -106,7 +106,7 @@ public class SaxEntityParser implements EntityParser {
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
             String content = new String(ch, start, length);
-            ElementsContentInitialiser.initialize(elementEnum, content, book, authors);
+            ElementsContentInitialiser.initialize(elementEnum, book, authors, content);
         }
     }
 }
