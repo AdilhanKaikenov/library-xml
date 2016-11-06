@@ -7,6 +7,6 @@ package com.epam.adk.task3.library_xml.transmitter;
  */
 public interface XmlTransmitter {
 
-    void transterTo(String xmlFile, Object classForTransferring);
+    void transferTo(String xmlFile, Object classForTransferring);
 
 }
