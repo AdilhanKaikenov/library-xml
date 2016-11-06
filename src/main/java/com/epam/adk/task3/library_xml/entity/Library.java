@@ -1,5 +1,6 @@
 package com.epam.adk.task3.library_xml.entity;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilhan.
  */
+@XmlRootElement
 public class Library {
 
     private List<Book> books;
