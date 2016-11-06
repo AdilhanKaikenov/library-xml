@@ -30,7 +30,7 @@ public class ElementsContentInitialiser {
      */
     public static void initialize(ElementEnum elementEnum, Book book, Authors authors, String content){
         log.trace("Entering ElementsContentInitialiser class, initialize( Argument: elementEnum = {}) method", elementEnum);
-        if (elementEnum != null && book != null && authors != null) {
+        if (elementEnum != null && book != null) {
             switch (elementEnum) {
                 case ISBN:
                     book.setIsbn(content);
@@ -43,7 +43,7 @@ public class ElementsContentInitialiser {
                     break;
                 case AUTHOR:
                     Author author = new Author();
-                    author.setName(content);
+                    author.setAuthor(content);
                     authors.add(author);
                     break;
                 case NUMBER_OF_PUBLISHING:

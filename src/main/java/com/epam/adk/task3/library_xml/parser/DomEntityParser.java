@@ -86,7 +86,7 @@ public class DomEntityParser implements EntityParser {
 
             Author author = new Author();
             Element authorElement = (Element) authorsNodes.item(i);
-            author.setName(authorElement.getTextContent());
+            author.setAuthor(authorElement.getTextContent());
 
             authors.add(author);
         }
