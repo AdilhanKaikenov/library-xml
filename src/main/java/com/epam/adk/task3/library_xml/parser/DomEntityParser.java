@@ -1,9 +1,6 @@
 package com.epam.adk.task3.library_xml.parser;
 
-import com.epam.adk.task3.library_xml.entity.Author;
-import com.epam.adk.task3.library_xml.entity.Authors;
-import com.epam.adk.task3.library_xml.entity.Book;
-import com.epam.adk.task3.library_xml.entity.Library;
+import com.epam.adk.task3.library_xml.entity.*;
 import com.epam.adk.task3.library_xml.entity.enums.Genre;
 import com.epam.adk.task3.library_xml.entity.enums.Language;
 import org.slf4j.Logger;
@@ -28,9 +25,11 @@ public class DomEntityParser implements EntityParser {
     private static final Logger log = LoggerFactory.getLogger(DomEntityParser.class);
 
     private Library library;
+    private Books books;
 
     public DomEntityParser() {
         library = new Library();
+        books = new Books();
     }
 
     @Override
@@ -47,6 +46,8 @@ public class DomEntityParser implements EntityParser {
 
             bookBuild(root);
 
+            library.setBooks(books);
+
         } catch (Exception e) {
             log.error("The error in the method 'parse()' of class DomEntityParser: {}", e);
             throw new RuntimeException(MessageFormat.format("" +
@@ -57,10 +58,10 @@ public class DomEntityParser implements EntityParser {
 
     private void bookBuild(Element root) {
 
-        NodeList books = root.getElementsByTagName("book");
+        NodeList booksNodes = root.getElementsByTagName("book");
 
-        for (int i = 0; i < books.getLength(); i++) {
-            Element bookElement = (Element) books.item(i);
+        for (int i = 0; i < booksNodes.getLength(); i++) {
+            Element bookElement = (Element) booksNodes.item(i);
 
             Book book = new Book();
             book.setIsbn(bookElement.getElementsByTagName("isbn").item(0).getTextContent());
@@ -70,10 +71,10 @@ public class DomEntityParser implements EntityParser {
             book.setAuthors(authorsBuild(bookElement));
 
             book.setNumberOfPages(Integer.parseInt(bookElement.getElementsByTagName("numberOfPages").item(0).getTextContent()));
-            book.setYear(Year.parse(bookElement.getElementsByTagName("yearOfPublishing").item(0).getTextContent()));
+            book.setYearOfPublishing(Year.parse(bookElement.getElementsByTagName("yearOfPublishing").item(0).getTextContent()));
             book.setLanguage(Language.from(bookElement.getElementsByTagName("language").item(0).getTextContent()));
 
-            library.add(book);
+            books.add(book);
         }
     }
 

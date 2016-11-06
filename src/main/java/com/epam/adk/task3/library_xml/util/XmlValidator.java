@@ -17,7 +17,7 @@ import java.text.MessageFormat;
  */
 public class XmlValidator {
 
-    private static final Logger log = LoggerFactory.getLogger(SaxEntityParser.class);
+    private static final Logger log = LoggerFactory.getLogger(XmlValidator.class);
 
     public void validateXMLByXSD(String xml, String xsd) {
         try {

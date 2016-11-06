@@ -1,5 +1,7 @@
 package com.epam.adk.task3.library_xml.entity;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilhan.
  */
+@XmlType(name = "Authors", propOrder = { "authors" })
 public class Authors {
 
     private List<Author> authors;
@@ -20,6 +23,7 @@ public class Authors {
         this.authors = authors;
     }
 
+    @XmlElement(namespace = "http://epam-xml-library.com/library_xml")
     public List<Author> getAuthors() {
         return authors;
     }

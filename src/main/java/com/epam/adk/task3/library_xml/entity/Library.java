@@ -1,45 +1,40 @@
 package com.epam.adk.task3.library_xml.entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
+import javax.xml.bind.annotation.*;
 
 /**
  * The class Library. Created on 03.11.2016.
  *
  * @author Kaikenov Adilhan.
  */
-@XmlRootElement
+@XmlType(name = "Library", propOrder = {"books"})
+@XmlRootElement(name = "library", namespace = "http://epam-xml-library.com/library_xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Library {
 
-    private List<Book> books;
+    @XmlElement(namespace = "http://epam-xml-library.com/library_xml")
+    private Books books;
 
     public Library() {
-        books = new ArrayList<>();
+        books = new Books();
     }
 
-    public Library(List<Book> books) {
+    public Library(Books books) {
         this.books = books;
     }
 
-    public List<Book> getBooks() {
+    public Books getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Books books) {
         this.books = books;
-    }
-
-    public boolean add(Book book){
-        return books.add(book);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Book book : books) {
-            sb.append("books: ").append(book);
-        }
-        return  sb.toString();
+        return "Library{" +
+                "books=" + books +
+                '}';
     }
 }

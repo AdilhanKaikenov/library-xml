@@ -2,6 +2,7 @@ package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
+import com.epam.adk.task3.library_xml.entity.Books;
 import com.epam.adk.task3.library_xml.entity.Library;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import com.epam.adk.task3.library_xml.util.ElementsContentInitialiser;
@@ -15,6 +16,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.InputStream;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The SaxEntityParser class. Created on 03.11.2016.
@@ -53,12 +56,18 @@ public class SaxEntityParser implements EntityParser {
     private class SaxParserHandler extends DefaultHandler {
 
         private Library library;
+        private Books books;
         private Book book;
+        private List<Book> bookList;
         private Authors authors;
         private ElementEnum elementEnum;
 
         public Library getLibrary() {
             return library;
+        }
+
+        public SaxParserHandler() {
+            bookList = new ArrayList<>();
         }
 
         @Override
@@ -70,6 +79,9 @@ public class SaxEntityParser implements EntityParser {
                 switch (startElement) {
                     case LIBRARY:
                         library = new Library();
+                        break;
+                    case BOOKS:
+                        books = new Books();
                         break;
                     case BOOK:
                         book = new Book();
@@ -91,11 +103,17 @@ public class SaxEntityParser implements EntityParser {
 
             if (endElement != null) {
                 switch (endElement) {
-                    case AUTHORS:
-                        book.setAuthors(authors);
+                    case LIBRARY:
+                        library.setBooks(books);
+                        break;
+                    case BOOKS:
+                        books.setBook(bookList);
                         break;
                     case BOOK:
-                        library.add(book);
+                        bookList.add(book);
+                        break;
+                    case AUTHORS:
+                        book.setAuthors(authors);
                         break;
                     default:
                         elementEnum = null;

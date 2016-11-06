@@ -50,7 +50,7 @@ public class ElementsContentInitialiser {
                     book.setNumberOfPages(Integer.parseInt(content));
                     break;
                 case YEAR_OF_PUBLISHING:
-                    book.setYear(Year.parse(content));
+                    book.setYearOfPublishing(Year.parse(content));
                     break;
                 case LANGUAGE:
                     book.setLanguage(Language.from(content));

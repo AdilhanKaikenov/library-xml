@@ -2,6 +2,7 @@ package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
+import com.epam.adk.task3.library_xml.entity.Books;
 import com.epam.adk.task3.library_xml.entity.Library;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import com.epam.adk.task3.library_xml.util.ElementsContentInitialiser;
@@ -14,6 +15,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The StaxEntityParser class. Created on 03.11.2016.
@@ -26,8 +29,14 @@ public class StaxEntityParser implements EntityParser {
 
     private StringBuilder content = new StringBuilder();
     private Library library;
+    private Books books;
+    private List<Book> bookList;
     private Book book;
     private Authors authors;
+
+    public StaxEntityParser() {
+        bookList = new ArrayList<>();
+    }
 
     @Override
     public Library parse(String resourcesXMLFilePath) {
@@ -39,7 +48,7 @@ public class StaxEntityParser implements EntityParser {
             try {
                 reader = factory.createXMLStreamReader(is);
             } finally {
-                if (reader != null){
+                if (reader != null) {
                     reader.close();
                 }
             }
@@ -76,6 +85,9 @@ public class StaxEntityParser implements EntityParser {
                         case LIBRARY:
                             library = new Library();
                             break;
+                        case BOOKS:
+                            books = new Books();
+                            break;
                         case BOOK:
                             book = new Book();
                             break;
@@ -91,11 +103,17 @@ public class StaxEntityParser implements EntityParser {
                     elementEnum = ElementEnum.from(endElementName);
                     log.trace("END_ELEMENT event, element = {}", elementEnum);
                     switch (elementEnum) {
-                        case AUTHORS:
-                            book.setAuthors(authors);
+                        case LIBRARY:
+                            library.setBooks(books);
+                            break;
+                        case BOOKS:
+                            books.setBook(bookList);
                             break;
                         case BOOK:
-                            library.add(book);
+                            bookList.add(book);
+                            break;
+                        case AUTHORS:
+                            book.setAuthors(authors);
                             break;
                     }
                     ElementsContentInitialiser.initialize(elementEnum, book, authors, content.toString());
