@@ -29,7 +29,7 @@ public class XMLApp {
      */
     public static void main(String[] args) {
 
-        InputStream xmlInputStream = XMLApp.class.getClassLoader().getResourceAsStream(RESOURCES_XML_FILE_PATH);
+        InputStream inputStream = XMLApp.class.getClassLoader().getResourceAsStream(RESOURCES_XML_FILE_PATH);
 
         String xmlFile = XMLApp.class.getClassLoader().getResource(RESOURCES_XML_FILE_PATH).getFile();
         String xsdFile = XMLApp.class.getClassLoader().getResource(RESOURCES_XSD_FILE_PATH).getFile();
@@ -38,15 +38,15 @@ public class XMLApp {
         validator.validateXMLByXSD(new File(xmlFile), new File(xsdFile));
 
         SaxEntityParser saxParser = new SaxEntityParser();
-        Library library1 = saxParser.parse(xmlInputStream);
+        Library library1 = saxParser.parse(inputStream);
         log.info("SaxEntityParser: Library = {}", library1);
 
         StaxEntityParser staxParser = new StaxEntityParser();
-        Library library2 = staxParser.parse(xmlInputStream);
+        Library library2 = staxParser.parse(inputStream);
         log.info("StaxEntityParser: Library = {}", library2);
 
         DomEntityParser domParser = new DomEntityParser();
-        Library library3 = domParser.parse(xmlInputStream);
+        Library library3 = domParser.parse(inputStream);
         log.info("DomEntityParser: Library = {}", library3);
 
 //        XmlWriter writer = new JAXBWriter();
