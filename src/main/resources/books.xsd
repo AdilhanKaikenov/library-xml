@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-        targetNamespace="http://epam-xml-library.com/library_xml"
-        xmlns:bk="http://epam-xml-library.com/library_xml"
+        targetNamespace="http://epam.com/library"
+        xmlns:bk="http://epam.com/library"
         xmlns="http://www.w3.org/2001/XMLSchema">
 
     <element name="books" type="bk:Books"/>

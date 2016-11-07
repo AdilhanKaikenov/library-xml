@@ -2,7 +2,6 @@ package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
-import com.epam.adk.task3.library_xml.entity.Books;
 import com.epam.adk.task3.library_xml.entity.Library;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import com.epam.adk.task3.library_xml.util.ElementsContentInitialiser;
@@ -29,7 +28,6 @@ public class StaxEntityParser implements EntityParser {
 
     private StringBuilder content = new StringBuilder();
     private Library library;
-    private Books books;
     private List<Book> bookList;
     private Book book;
     private Authors authors;
@@ -39,10 +37,10 @@ public class StaxEntityParser implements EntityParser {
     }
 
     @Override
-    public Library parse(String resourcesXMLFilePath) {
-        log.debug("Entering StaxEntityParser class, parse( Argument: resourcesXMLFilePath = {}) ", resourcesXMLFilePath);
+    public Library parse(InputStream inputStream) {
+        log.debug("Entering StaxEntityParser class, parse() ");
         XMLInputFactory factory = XMLInputFactory.newFactory();
-        try (InputStream is = StaxEntityParser.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
+        try (InputStream is = inputStream) {
 
             XMLStreamReader reader = null;
             try {
@@ -85,9 +83,6 @@ public class StaxEntityParser implements EntityParser {
                         case LIBRARY:
                             library = new Library();
                             break;
-                        case BOOKS:
-                            books = new Books();
-                            break;
                         case BOOK:
                             book = new Book();
                             break;
@@ -104,10 +99,7 @@ public class StaxEntityParser implements EntityParser {
                     log.trace("END_ELEMENT event, element = {}", elementEnum);
                     switch (elementEnum) {
                         case LIBRARY:
-                            library.setBooks(books);
-                            break;
-                        case BOOKS:
-                            books.setBook(bookList);
+                            library.setBooks(bookList);
                             break;
                         case BOOK:
                             bookList.add(book);

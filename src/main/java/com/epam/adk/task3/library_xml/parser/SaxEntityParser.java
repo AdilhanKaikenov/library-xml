@@ -2,7 +2,6 @@ package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
-import com.epam.adk.task3.library_xml.entity.Books;
 import com.epam.adk.task3.library_xml.entity.Library;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import com.epam.adk.task3.library_xml.util.ElementsContentInitialiser;
@@ -31,12 +30,12 @@ public class SaxEntityParser implements EntityParser {
     private SaxParserHandler handler = new SaxParserHandler();
 
     @Override
-    public Library parse(String resourcesXMLFilePath) {
-        log.debug("Entering SaxEntityParser class, parse( Argument: resourcesXMLFilePath = {}) ", resourcesXMLFilePath);
+    public Library parse(InputStream inputStream) {
+        log.debug("Entering SaxEntityParser class, parse() ");
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser;
 
-        try (InputStream is = SaxParserHandler.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
+        try (InputStream is = inputStream) {
             parser = factory.newSAXParser();
 
             parser.parse(is, handler);
@@ -55,8 +54,8 @@ public class SaxEntityParser implements EntityParser {
      */
     private class SaxParserHandler extends DefaultHandler {
 
+        private StringBuilder content = new StringBuilder();
         private Library library;
-        private Books books;
         private Book book;
         private List<Book> bookList;
         private Authors authors;
@@ -75,13 +74,12 @@ public class SaxEntityParser implements EntityParser {
             ElementEnum startElement = ElementEnum.from(qName);
             log.trace("startElement() method current element = {}, startElement enumeration = {}", qName, startElement);
 
+            content.setLength(0);
+
             if (startElement != null) {
                 switch (startElement) {
                     case LIBRARY:
                         library = new Library();
-                        break;
-                    case BOOKS:
-                        books = new Books();
                         break;
                     case BOOK:
                         book = new Book();
@@ -104,10 +102,7 @@ public class SaxEntityParser implements EntityParser {
             if (endElement != null) {
                 switch (endElement) {
                     case LIBRARY:
-                        library.setBooks(books);
-                        break;
-                    case BOOKS:
-                        books.setBook(bookList);
+                        library.setBooks(bookList);
                         break;
                     case BOOK:
                         bookList.add(book);
@@ -123,8 +118,8 @@ public class SaxEntityParser implements EntityParser {
 
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
-            String content = new String(ch, start, length);
-            ElementsContentInitialiser.initialize(elementEnum, book, authors, content);
+            content.append(ch, start, length);
+            ElementsContentInitialiser.initialize(elementEnum, book, authors, content.toString());
         }
     }
 }

@@ -2,6 +2,8 @@ package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.Library;
 
+import java.io.InputStream;
+
 /**
  * The interface EntityParser. Created on 03.11.2016.
  *
@@ -9,6 +11,6 @@ import com.epam.adk.task3.library_xml.entity.Library;
  */
 public interface EntityParser {
 
-    Library parse(String resourcesXMLFilePath);
+    Library parse(InputStream inputStream);
 
 }

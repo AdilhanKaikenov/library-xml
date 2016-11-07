@@ -13,26 +13,26 @@ import java.util.List;
 @XmlType(name = "Authors", propOrder = { "authors" })
 public class Authors {
 
-    private List<Author> authors;
+    private List<String> authors;
 
     public Authors() {
         authors = new ArrayList<>();
     }
 
-    public Authors(List<Author> authors) {
+    public Authors(List<String> authors) {
         this.authors = authors;
     }
 
-    @XmlElement(namespace = "http://epam-xml-library.com/library_xml")
-    public List<Author> getAuthors() {
+    @XmlElement(namespace = "http://epam.com/library")
+    public List<String> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(List<String> authors) {
         this.authors = authors;
     }
 
-    public boolean add(Author author){
+    public boolean add(String author){
         return authors.add(author);
     }
 
@@ -40,8 +40,8 @@ public class Authors {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n\t -> authors: ");
-        for (Author author : authors){
-            sb.append(author);
+        for (String author : authors){
+            sb.append("\n\t\t\t").append(author);
         }
         return sb.toString();
     }

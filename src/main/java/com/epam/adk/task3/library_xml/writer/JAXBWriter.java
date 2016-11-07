@@ -1,4 +1,4 @@
-package com.epam.adk.task3.library_xml.transmitter;
+package com.epam.adk.task3.library_xml.writer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,16 +10,16 @@ import java.io.File;
 import java.text.MessageFormat;
 
 /**
- * The JAXBTransmitter class. Created on 06.11.2016.
+ * The JAXBWriter class. Created on 06.11.2016.
  *
  * @author Kaikenov Adilhan.
  */
-public class JAXBTransmitter implements XmlTransmitter {
+public class JAXBWriter implements XmlWriter {
 
-    private static final Logger log = LoggerFactory.getLogger(JAXBTransmitter.class);
+    private static final Logger log = LoggerFactory.getLogger(JAXBWriter.class);
 
     @Override
-    public void transferTo(String xmlFile, Object classForTransferring) {
+    public void writeTo(String xmlFile, Object classForTransferring) {
         File file = new File(xmlFile);
 
         try {

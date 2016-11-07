@@ -1,8 +1,6 @@
 package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.*;
-import com.epam.adk.task3.library_xml.entity.enums.Genre;
-import com.epam.adk.task3.library_xml.entity.enums.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -14,6 +12,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The DomEntityParser class. Created on 03.11.2016.
@@ -25,18 +25,16 @@ public class DomEntityParser implements EntityParser {
     private static final Logger log = LoggerFactory.getLogger(DomEntityParser.class);
 
     private Library library;
-    private Books books;
 
     public DomEntityParser() {
         library = new Library();
-        books = new Books();
     }
 
     @Override
-    public Library parse(String resourcesXMLFilePath) {
-        log.debug("Entering DomEntityParser class, parse( Argument: resourcesXMLFilePath = {}) ", resourcesXMLFilePath);
+    public Library parse(InputStream inputStream) {
+        log.debug("Entering DomEntityParser class, parse() ");
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try (InputStream is = DomEntityParser.class.getClassLoader().getResourceAsStream(resourcesXMLFilePath)) {
+        try (InputStream is = inputStream) {
 
             DocumentBuilder documentBuilder = factory.newDocumentBuilder();
             Document document = documentBuilder.parse(is);
@@ -44,7 +42,7 @@ public class DomEntityParser implements EntityParser {
             Element root = document.getDocumentElement();
             log.debug("Root element tag name = {}", root.getTagName());
 
-            bookBuild(root);
+            List<Book> books = buildBook(root);
 
             library.setBooks(books);
 
@@ -56,7 +54,9 @@ public class DomEntityParser implements EntityParser {
         return library;
     }
 
-    private void bookBuild(Element root) {
+    private List<Book> buildBook(Element root) {
+
+        List<Book> books = new ArrayList<>();
 
         NodeList booksNodes = root.getElementsByTagName("book");
 
@@ -66,30 +66,29 @@ public class DomEntityParser implements EntityParser {
             Book book = new Book();
             book.setIsbn(bookElement.getElementsByTagName("isbn").item(0).getTextContent());
             book.setTitle(bookElement.getElementsByTagName("title").item(0).getTextContent());
-            book.setGenre(Genre.from(bookElement.getElementsByTagName("genre").item(0).getTextContent()));
+            book.setGenre(Book.Genre.from(bookElement.getElementsByTagName("genre").item(0).getTextContent()));
 
-            book.setAuthors(authorsBuild(bookElement));
+            book.setAuthors(buildAuthors(bookElement));
 
             book.setNumberOfPages(Integer.parseInt(bookElement.getElementsByTagName("numberOfPages").item(0).getTextContent()));
             book.setYearOfPublishing(Year.parse(bookElement.getElementsByTagName("yearOfPublishing").item(0).getTextContent()));
-            book.setLanguage(Language.from(bookElement.getElementsByTagName("language").item(0).getTextContent()));
+            book.setLanguage(Book.Language.from(bookElement.getElementsByTagName("language").item(0).getTextContent()));
 
             books.add(book);
         }
+        return books;
     }
 
-    private Authors authorsBuild(Element bookElement) {
+    private Authors buildAuthors(Element bookElement) {
 
         Authors authors = new Authors();
 
         NodeList authorsNodes = bookElement.getElementsByTagName("author");
         for (int i = 0; i < authorsNodes.getLength(); i++) {
 
-            Author author = new Author();
             Element authorElement = (Element) authorsNodes.item(i);
-            author.setAuthor(authorElement.getTextContent());
 
-            authors.add(author);
+            authors.add(authorElement.getTextContent());
         }
         return authors;
     }

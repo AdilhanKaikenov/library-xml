@@ -1,6 +1,5 @@
 package com.epam.adk.task3.library_xml.util;
 
-import com.epam.adk.task3.library_xml.parser.SaxEntityParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,15 +18,15 @@ public class XmlValidator {
 
     private static final Logger log = LoggerFactory.getLogger(XmlValidator.class);
 
-    public void validateXMLByXSD(String xml, String xsd) {
+    public void validateXMLByXSD(File xmlFile, File xsdFile) {
         try {
             SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).
-                    newSchema(new File(xsd)).
+                    newSchema(xsdFile).
                     newValidator().
-                    validate(new StreamSource(xml));
-            log.debug("{} file is valid!", xml);
+                    validate(new StreamSource(xmlFile));
+            log.debug("{} file is valid!", xmlFile);
         } catch (Exception e) {
-            log.error("{} file is not valid!", xml);
+            log.error("{} file is not valid!", xmlFile);
             throw new RuntimeException(MessageFormat.format(
                     "{0} file is not valid!", e));
         }

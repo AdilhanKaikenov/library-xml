@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-        targetNamespace="http://epam-xml-library.com/library_xml"
-        xmlns:lib="http://epam-xml-library.com/library_xml"
+        targetNamespace="http://epam.com/library"
+        xmlns:lib="http://epam.com/library"
         xmlns="http://www.w3.org/2001/XMLSchema">
 
     <include schemaLocation="books.xsd"/>
