@@ -1,6 +1,7 @@
 package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.Library;
+import com.epam.adk.task3.library_xml.exception.ParsingException;
 
 import java.io.InputStream;
 
@@ -11,6 +12,6 @@ import java.io.InputStream;
  */
 public interface EntityParser {
 
-    Library parse(InputStream inputStream);
+    Library parse(InputStream inputStream) throws ParsingException;
 
 }

@@ -9,38 +9,39 @@ import java.util.List;
  *
  * @author Kaikenov Adilhan.
  */
-@XmlType(name = "Library", propOrder = {"books"})
+@XmlType(name = "Library", propOrder = {"book"})
+@XmlRootElement(name = "library", namespace = "http://epam.com/library")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Library {
 
     @XmlElement(namespace = "http://epam.com/library")
-    private List<Book> books;
+    private List<Book> book;
 
     public Library() {
-        books = new ArrayList<>();
+        book = new ArrayList<>();
     }
 
     public Library(List<Book> books) {
-        this.books = books;
+        this.book = books;
     }
 
     public List<Book> getBooks() {
-        return books;
+        return book;
     }
 
     public void setBooks(List<Book> book) {
-        this.books = book;
+        this.book = book;
     }
 
     public boolean add(Book book){
-        return this.books.add(book);
+        return this.book.add(book);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("books: ");
-        for (Book book : this.books) {
+        for (Book book : this.book) {
             sb.append(book);
         }
         return  sb.toString();

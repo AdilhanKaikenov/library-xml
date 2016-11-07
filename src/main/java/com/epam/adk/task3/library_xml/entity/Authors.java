@@ -41,7 +41,7 @@ public class Authors {
         StringBuilder sb = new StringBuilder();
         sb.append("\n\t -> authors: ");
         for (String author : authors){
-            sb.append("\n\t\t\t").append(author);
+            sb.append("\n\t\t").append(author);
         }
         return sb.toString();
     }

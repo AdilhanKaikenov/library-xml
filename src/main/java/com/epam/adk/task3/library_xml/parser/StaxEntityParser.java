@@ -3,6 +3,7 @@ package com.epam.adk.task3.library_xml.parser;
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
 import com.epam.adk.task3.library_xml.entity.Library;
+import com.epam.adk.task3.library_xml.exception.ParsingException;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import com.epam.adk.task3.library_xml.util.ElementsContentInitialiser;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class StaxEntityParser implements EntityParser {
     }
 
     @Override
-    public Library parse(InputStream inputStream) {
+    public Library parse(InputStream inputStream) throws ParsingException {
         log.debug("Entering StaxEntityParser class, parse() ");
         XMLInputFactory factory = XMLInputFactory.newFactory();
         try (InputStream is = inputStream) {
@@ -53,9 +55,10 @@ public class StaxEntityParser implements EntityParser {
             process(reader);
 
             log.debug("StaxEntityParser the parse method executed!");
-        } catch (Exception e) {
+
+        } catch (IOException | XMLStreamException e) {
             log.error("The error in the method 'parse()' of class StaxEntityParser: {}", e);
-            throw new RuntimeException(MessageFormat.format(
+            throw new ParsingException(MessageFormat.format(
                     "The error in the method 'parse()' of class StaxEntityParser: {0}", e));
         }
         return library;

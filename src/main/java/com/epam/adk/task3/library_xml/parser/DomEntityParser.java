@@ -1,14 +1,18 @@
 package com.epam.adk.task3.library_xml.parser;
 
 import com.epam.adk.task3.library_xml.entity.*;
+import com.epam.adk.task3.library_xml.exception.ParsingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.time.Year;
@@ -31,7 +35,7 @@ public class DomEntityParser implements EntityParser {
     }
 
     @Override
-    public Library parse(InputStream inputStream) {
+    public Library parse(InputStream inputStream) throws ParsingException {
         log.debug("Entering DomEntityParser class, parse() ");
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try (InputStream is = inputStream) {
@@ -46,9 +50,9 @@ public class DomEntityParser implements EntityParser {
 
             library.setBooks(books);
 
-        } catch (Exception e) {
+        }  catch (SAXException | ParserConfigurationException | IOException e) {
             log.error("The error in the method 'parse()' of class DomEntityParser: {}", e);
-            throw new RuntimeException(MessageFormat.format("" +
+            throw new ParsingException(MessageFormat.format("" +
                     "The error in the method 'parse()' of class DomEntityParser: {0}", e));
         }
         return library;

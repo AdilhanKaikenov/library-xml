@@ -19,7 +19,7 @@ public class JAXBWriter implements XmlWriter {
     private static final Logger log = LoggerFactory.getLogger(JAXBWriter.class);
 
     @Override
-    public void writeTo(String xmlFile, Object classForTransferring) {
+    public void writeTo(String xmlFile, Object classForTransferring) throws JAXBException {
         File file = new File(xmlFile);
 
         try {
@@ -31,7 +31,7 @@ public class JAXBWriter implements XmlWriter {
             jaxbMarshaller.marshal(classForTransferring, System.out);
         } catch (JAXBException e) {
             log.error("Unable to create XML file from object. {}", e);
-            throw new RuntimeException(MessageFormat.format("Unable to create XML file from object. {0}", e));
+            throw new JAXBException(MessageFormat.format("Unable to create XML file from object. {0}", e));
         }
     }
 }

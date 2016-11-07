@@ -3,6 +3,7 @@ package com.epam.adk.task3.library_xml.parser;
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
 import com.epam.adk.task3.library_xml.entity.Library;
+import com.epam.adk.task3.library_xml.exception.ParsingException;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import com.epam.adk.task3.library_xml.util.ElementsContentInitialiser;
 import org.slf4j.Logger;
@@ -11,8 +12,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ public class SaxEntityParser implements EntityParser {
     private SaxParserHandler handler = new SaxParserHandler();
 
     @Override
-    public Library parse(InputStream inputStream) {
+    public Library parse(InputStream inputStream) throws ParsingException {
         log.debug("Entering SaxEntityParser class, parse() ");
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser;
@@ -41,9 +44,10 @@ public class SaxEntityParser implements EntityParser {
             parser.parse(is, handler);
 
             log.debug("SaxEntityParser the parse method executed!");
-        } catch (Exception e) {
+
+        } catch (SAXException | ParserConfigurationException | IOException e) {
             log.error("The error in the method 'parse()' of class SaxEntityParser: {}", e);
-            throw new RuntimeException(MessageFormat.format("" +
+            throw new ParsingException(MessageFormat.format("" +
                     "The error in the method 'parse()' of class SaxEntityParser: {0}", e));
         }
         return handler.getLibrary();
