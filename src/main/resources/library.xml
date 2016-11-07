@@ -18,14 +18,14 @@
         </book>
         <book>
             <isbn>978-5-17-097921-5</isbn>
-            <title>JAVA Methods Programming</title>
+            <title>JAVA. ПРОМЫШЛЕННОЕ ПРОГРАММИРОВАНИЕ</title>
             <genre>Programming</genre>
             <authors>
                 <author>И.Н.Блинов</author>
                 <author>В.С.Романчик</author>
             </authors>
-            <numberOfPages>897</numberOfPages>
-            <yearOfPublishing>2013</yearOfPublishing>
+            <numberOfPages>704</numberOfPages>
+            <yearOfPublishing>2007</yearOfPublishing>
             <language>Russian</language>
         </book>
     </books>
