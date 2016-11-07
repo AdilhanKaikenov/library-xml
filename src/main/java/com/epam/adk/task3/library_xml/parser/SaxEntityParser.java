@@ -50,7 +50,7 @@ public class SaxEntityParser implements EntityParser {
             throw new ParsingException(MessageFormat.format("" +
                     "The error in the method 'parse()' of class SaxEntityParser: {0}", e));
         }
-        return handler.getLibrary();
+        return handler.library;
     }
 
     /**
@@ -58,16 +58,12 @@ public class SaxEntityParser implements EntityParser {
      */
     private class SaxParserHandler extends DefaultHandler {
 
-        private StringBuilder content = new StringBuilder();
-        private Library library;
-        private Book book;
-        private List<Book> bookList;
-        private Authors authors;
-        private ElementEnum elementEnum;
-
-        public Library getLibrary() {
-            return library;
-        }
+        StringBuilder content = new StringBuilder();
+        Library library;
+        Book book;
+        List<Book> bookList;
+        Authors authors;
+        ElementEnum elementEnum;
 
         public SaxParserHandler() {
             bookList = new ArrayList<>();
