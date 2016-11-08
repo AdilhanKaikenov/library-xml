@@ -8,6 +8,9 @@ package com.epam.adk.task3.library_xml.parser.enums;
 public enum ElementEnum {
 
     LIBRARY("library"),
+    ID("id"),
+    NAME("name"),
+    ADDRESS("address"),
     BOOKS("books"),
     BOOK("book"),
     ISBN("isbn"),

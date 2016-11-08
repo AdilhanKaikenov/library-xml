@@ -3,6 +3,9 @@
 <library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://epam.com/library"
          xsi:schemaLocation="http://epam.com/library library.xsd">
+    <id>A12</id>
+    <name>Public Library</name>
+    <address>Ave Buhar Zhyrau 30, Караганда</address>
     <books>
         <book>
             <isbn>978-5-17-097961-5</isbn>

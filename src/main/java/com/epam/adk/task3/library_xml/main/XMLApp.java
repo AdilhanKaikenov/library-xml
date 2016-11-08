@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.ValidationException;
+import java.beans.IntrospectionException;
 import java.io.File;
 import java.io.InputStream;
 import java.text.MessageFormat;
@@ -33,7 +34,7 @@ public class XMLApp {
      *
      * @param args input arguments array.
      */
-    public static void main(String[] args) throws JAXBException, ParsingException {
+    public static void main(String[] args) throws JAXBException, ParsingException, ClassNotFoundException, IntrospectionException {
 
         InputStream inputStream1 = XMLApp.class.getClassLoader().getResourceAsStream(RESOURCES_XML_FILE_PATH);
         InputStream inputStream2 = XMLApp.class.getClassLoader().getResourceAsStream(RESOURCES_XML_FILE_PATH);

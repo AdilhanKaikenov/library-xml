@@ -111,7 +111,7 @@ public class StaxEntityParser implements EntityParser {
                             book.setAuthors(authors);
                             break;
                     }
-                    ElementsContentInitialiser.initialize(elementEnum, book, authors, content.toString());
+                    ElementsContentInitialiser.initialize(elementEnum, library, book, authors, content.toString());
                     break;
 
                 case XMLStreamConstants.CHARACTERS:

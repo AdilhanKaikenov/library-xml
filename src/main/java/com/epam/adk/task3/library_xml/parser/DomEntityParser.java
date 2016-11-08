@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -46,16 +47,22 @@ public class DomEntityParser implements EntityParser {
             Element root = document.getDocumentElement();
             log.debug("Root element tag name = {}", root.getTagName());
 
-            List<Book> books = buildBook(root);
+            buildLibrary(root);
 
-            library.setBooks(books);
-
-        }  catch (SAXException | ParserConfigurationException | IOException e) {
+        } catch (SAXException | ParserConfigurationException | IOException e) {
             log.error("The error in the method 'parse()' of class DomEntityParser: {}", e);
             throw new ParsingException(MessageFormat.format("" +
                     "The error in the method 'parse()' of class DomEntityParser: {0}", e));
         }
         return library;
+    }
+
+    private void buildLibrary(Element root){
+        library.setId(root.getElementsByTagName("id").item(0).getTextContent());
+        library.setName(root.getElementsByTagName("name").item(0).getTextContent());
+        library.setAddress(root.getElementsByTagName("address").item(0).getTextContent());
+        List<Book> books = buildBook(root);
+        library.setBooks(books);
     }
 
     private List<Book> buildBook(Element root) {

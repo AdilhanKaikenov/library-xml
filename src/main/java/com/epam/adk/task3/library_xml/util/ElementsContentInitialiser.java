@@ -2,6 +2,7 @@ package com.epam.adk.task3.library_xml.util;
 
 import com.epam.adk.task3.library_xml.entity.Authors;
 import com.epam.adk.task3.library_xml.entity.Book;
+import com.epam.adk.task3.library_xml.entity.Library;
 import com.epam.adk.task3.library_xml.parser.enums.ElementEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +26,19 @@ public class ElementsContentInitialiser {
      * @param authors     Authors instance.
      * @param content     tag text.
      */
-    public static void initialize(ElementEnum elementEnum, Book book, Authors authors, String content) {
+    public static void initialize(ElementEnum elementEnum, Library library, Book book, Authors authors, String content) {
         log.trace("Entering ElementsContentInitialiser class, initialize( Argument: elementEnum = {}) method", elementEnum);
-        if (elementEnum != null && book != null) {
+        if (elementEnum != null) {
             switch (elementEnum) {
+                case ID:
+                    library.setId(content);
+                    break;
+                case NAME:
+                    library.setName(content);
+                    break;
+                case ADDRESS:
+                    library.setAddress(content);
+                    break;
                 case ISBN:
                     book.setIsbn(content);
                     break;

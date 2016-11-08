@@ -10,8 +10,17 @@
 
     <complexType name="Library">
         <sequence>
+            <element name="id" type="lib:ID" minOccurs="1" maxOccurs="1"/>
+            <element name="name" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="address" type="string" minOccurs="1" maxOccurs="1"/>
             <element name="books" type="lib:Books" minOccurs="0" maxOccurs="1"/>
         </sequence>
     </complexType>
+
+    <simpleType name="ID">
+        <restriction base="string">
+            <pattern value="([A-Z])([0-9]{2})"/>
+        </restriction>
+    </simpleType>
 
 </schema>
